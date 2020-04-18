@@ -13,14 +13,14 @@ use pocketmine\event\player\PlayerJoinEvent;
 
 class Main extends PluginBase implements Listener {
 
-    public function onLoad(){
+    public function onLoad() : void {
         @mkdir($this->getDataFolder());
         $this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, array(/*todo*/));
         $this->config->save();
         $this->getServer()->getLogger()->info("[CTF]Plugin is loading!");
     }
 
-    public function onEnable() {
+    public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new gameTask($this),20);
         $this->getServer()->getLogger()->info("[CTF]Plugin has been enabled!");
